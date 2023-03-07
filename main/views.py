@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
 
-# Create your views here.
+from .models import *
+
+
 def indexMain(request):
-    print(request.GET)
-    return HttpResponse('Главная страница сайта')
+    cards = Lesson.objects.all()
+    return render(request, 'main/index.html', {'title': 'Главная страница', 'card': cards})
 
 
 def indexLevel(request, lvlid):
